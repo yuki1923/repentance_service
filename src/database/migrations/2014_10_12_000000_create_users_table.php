@@ -16,10 +16,10 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->boolean('sex');
-            $table->integer('age');
-            $table->unsignedBigInteger('rank_id');
+            $table->string('name')->nullable();
+            $table->boolean('sex')->nullable();
+            $table->integer('age')->nullable();
+            $table->unsignedBigInteger('rank_id')->default(1);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

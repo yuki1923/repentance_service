@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7ba3ca73a9.js" crossorigin="anonymous"></script>
 </head>
 
 <body style="background-color: #e7e0cf">
@@ -22,24 +23,33 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">トップ</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        マイページ
-                    </a>
-                    <div class="dropdown-menu bg-dark border-0 text-light" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-light" href="#">マイページ編集</a>
-                        <a class="dropdown-item text-light" href="#">パスワード変更</a>
-                        <a class="dropdown-item text-light" href="#">過去投稿</a>
-                        <a class="dropdown-item text-light" href="#">過去返答</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">ログアウト</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-pen-field"></i></a>
-                </li>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            マイページ
+                        </a>
+                        <div class="dropdown-menu bg-dark border-0 text-light" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item text-light" href="#">マイページ編集</a>
+                            <a class="dropdown-item text-light" href="#">パスワード変更</a>
+                            <a class="dropdown-item text-light" href="#">過去投稿</a>
+                            <a class="dropdown-item text-light" href="#">過去返答</a>
+                        </div>
+                    </li>
+                @endauth
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
+                    </li>
+                @endguest
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ログアウト</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-pen-field"></i></a>
+                    </li>
+                @endauth
             </ul>
         </div>
     </nav>
@@ -68,6 +78,7 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
     <script src="{{ asset('/js/footer.js') }}"></script>
+    <script src="{{ asset('/js/showPass.js') }}"></script>
 
 </body>
 
