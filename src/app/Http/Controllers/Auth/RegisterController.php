@@ -30,7 +30,7 @@ class RegisterController extends Controller
      * @var string
      */
     //登録後にトップページへ遷移
-    protected $redirectTo = '/';
+    protected $redirectTo = '/index';
 
 
     /**

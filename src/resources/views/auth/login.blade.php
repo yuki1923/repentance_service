@@ -1,44 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center my-2">ログイン</h3>
-                </div>
-
-                <div class="card-body">
-                    <form>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>
-
-                            <div class="col-md-6">
-                                <input class="form-control" autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">パスワード</label>
-
-                            <div class="col-md-6">
-                                <input class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button class="btn btn-primary">
-                                    ログイン
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="container">
+        <h2 class="text-center mb-4">ログイン</h2>
+        <form class="form p-5" action="" method="post">
+            @csrf
+            <div class="form-group mb-4">
+                <label for="email">メールアドレス</label>
+                <p class=" text-danger p-1">
+                    @error('email')
+                        {{ $message }}
+                    @enderror
+                </p>
+                <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}">
             </div>
-        </div>
+            <div class="form-group mb-4" style="position: relative">
+                <label class="mr-3" for="passField">パスワード</label>
+                <p class=" text-danger p-1">
+                    @error('password')
+                        {{ $message }}
+                    @enderror
+                </p>
+                <input type="text" id="passField" class="form-control" name="password" value="{{ old('password') }}">
+                <i id="showPassToggle" class="fa fa-eye" style="position:absolute; right:3%; top:40%;"></i>
+            </div>
+
+            <button class="btn btn-primary btn-block mb-4" type="submit">ログイン</button>
+            <div class="mb-4">
+                <a href="{{ route('register') }}" class="border-bottom border-primary">はじめての方はこちら</a>
+            </div>
+            <div>
+                <a href="" class="border-bottom border-primary">パスワードを忘れた方はこちら</a>
+            </div>
+        </form>
     </div>
-</div>
 @endsection

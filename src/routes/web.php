@@ -12,4 +12,4 @@
 */
 
 Auth::routes();
-Route::get('/', 'PostController@index')->name('index');
+Route::get('home', 'PostController@index')->name('index');
