@@ -29,7 +29,7 @@
             </div>
             <button class="btn btn-primary btn-block mb-4" type="submit">登録</button>
             <div>
-                <a href="" class="border-bottom border-primary">登録済みの方はこちら</a>
+                <a href="{{ route('login') }}" class="border-bottom border-primary">登録済みの方はこちら</a>
             </div>
         </form>
 

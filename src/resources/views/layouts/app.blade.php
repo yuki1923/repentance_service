@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">トップ</a>
+                    <a class="nav-link" href="{{ route('index') }}">トップ</a>
                 </li>
                 @auth
                     <li class="nav-item dropdown">
@@ -39,15 +39,22 @@
                 @endauth
                 @guest
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
                     </li>
                 @endguest
                 @auth
+                    <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+                        @csrf
+                    </form>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ログアウト</a>
+                        <a class="nav-link" href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-pen-field"></i></a>
+                        <a class="nav-link" href="#">投稿する</a>
                     </li>
                 @endauth
             </ul>
