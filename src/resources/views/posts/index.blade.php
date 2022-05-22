@@ -21,7 +21,8 @@
         <tbody>
             @foreach ($allPosts as $post)
                 <tr data-href="/hoge/" style="cursor: pointer;">
-                    <td scope="row" style="border-bottom: 1px #989898 solid;">{{ $post->created_at->format('Y/m/d H:m') }}
+                    <td scope="row" style="border-bottom: 1px #989898 solid;">
+                        {{ $post->created_at->format('Y/m/d H:i:s') }}
                     </td>
                     <td scope="row" style="border-bottom: 1px #989898 solid;">{{ $post->user->name }}</td>
                     <td style="border-bottom: 1px #989898 solid">{{ $post->title }}</td>

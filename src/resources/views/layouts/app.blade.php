@@ -12,6 +12,11 @@
 </head>
 
 <body style="background-color: #e7e0cf">
+    @if (session('flash_message'))
+        <div class="alert alert-primary text-center">
+            {{ session('flash_message') }}
+        </div>
+    @endif
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="margin-bottom: 10%">
         <a class="navbar-brand" href="#">miyacleApp</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4"
@@ -54,7 +59,7 @@
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">投稿する</a>
+                        <a class="nav-link" href="{{ route('create') }}">投稿する</a>
                     </li>
                 @endauth
             </ul>
@@ -74,19 +79,14 @@
     </div>
 
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
     <script src="{{ asset('/js/footer.js') }}"></script>
     <script src="{{ asset('/js/showPass.js') }}"></script>
-
 </body>
 
 </html>
