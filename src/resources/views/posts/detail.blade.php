@@ -7,7 +7,11 @@
     <div class="form-group  mb-5">
         <label class="form-label" for="repentance">懺悔内容</label>
         @if ($contributor === true)
-            <a class="float-right btn btn-secondary mb-2" href=""><i class="fa-solid fa-trash-can"></i> 削除</a>
+            <form action="{{ route('delete', ['id' => $postData->id]) }}" method="post">
+                @csrf
+                <button type="submit" class="float-right btn btn-secondary mb-2" href=""><i class="fa-solid fa-trash-can"></i>
+                    削除</button>
+            </form>
             <a href="{{ route('edit', ['id' => $postData->id]) }}" class="float-right btn btn-primary mr-2 mb-2"><i
                     class="fa-solid fa-pen-to-square"></i> 編集</a>
         @endif

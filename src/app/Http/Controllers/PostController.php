@@ -65,4 +65,15 @@ class PostController extends Controller
         session()->flash('flash_message', '編集が完了しました');
         return redirect()->route('index');
     }
+
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+        if ($post->user_id !== Auth::id()) {
+            return redirect()->route('index');
+        }
+        Post::findOrFail($id)->delete();
+        session()->flash('flash_message', '削除が完了しました');
+        return redirect()->route('index');
+    }
 }
