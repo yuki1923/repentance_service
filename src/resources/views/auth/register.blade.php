@@ -23,9 +23,10 @@
                         {{ $message }}
                     @enderror
                 </p>
-                <input type="text" id="passField" class="form-control shadow-sm" name="password"
-                    value="{{ old('password') }}" style="position: relative;">
-                <i id="showPassToggle" class="fa fa-eye" style="position:absolute; right:3%; top:70%;"></i>
+                <input type="password" id="passField" class="form-control shadow-sm" name="password"
+                    value="{{ old('password') }}">
+                <input type="checkbox" id="showPassToggle" name="passview">
+                <label for="showPassToggle">パスワードを表示する</label>
             </div>
             <button class="btn btn-primary btn-block mb-4" type="submit">登録</button>
             <div>
