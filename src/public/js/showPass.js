@@ -1,14 +1,12 @@
 (function(){
-  var passeye = document.getElementById('showPassToggle');
+  var passViewCheck = document.getElementById('showPassToggle');
   var textField = document.getElementById('passField');
 
-  passeye.addEventListener('click',function(){
-    if(textField.type === 'text'){
-      textField.type = 'password';
-      passeye.className = 'fa fa-eye-slash';
-    }else{
+  passViewCheck.addEventListener('click',function(){
+    if(textField.type === 'password'){
       textField.type = 'text';
-      passeye.className = 'fa fa-eye';
+    }else{
+      textField.type = 'password';
     }
   })
 })();
