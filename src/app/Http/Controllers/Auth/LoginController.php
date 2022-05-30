@@ -41,6 +41,7 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
-        return redirect(route('index'));
+        session()->flash('flash_message', 'ログアウトしました');
+        return redirect(route('login'));
     }
 }
