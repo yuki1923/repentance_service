@@ -20,7 +20,7 @@
                 <span class="badge bg-warning px-2 py-1 mb-1">メールアドレス</span>
                 <p>{{ $userInfo->email }}</p>
                 <span class="badge bg-warning px-2 py-1 mb-1">ランク</span>
-                <p>{{ $userInfo->rank_id }}</p>
+                <p>{{ $userInfo->rank->name }}</p>
             </div>
         </div>
         <div class="row justify-content-md-around">
@@ -30,10 +30,10 @@
         </div>
     </div>
     <!-- <div class="row justify-content-md-around">
-                                                                                                    <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-secondary  mb-4 mb-md-0"
-                                                                                                    type="submit">戻る</button>
-                                                                                                    <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-primary mt-0" type="submit">編集する</button>
-                                                                                                </div> -->
+                                                                                                                                        <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-secondary  mb-4 mb-md-0"
+                                                                                                                                        type="submit">戻る</button>
+                                                                                                                                        <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-primary mt-0" type="submit">編集する</button>
+                                                                                                                                    </div> -->
 
 
 
