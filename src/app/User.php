@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Post');
     }
+
+    public function rank()
+    {
+        return $this->belongsTo('App\Rank');
+    }
 }

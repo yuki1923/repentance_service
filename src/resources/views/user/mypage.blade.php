@@ -3,38 +3,38 @@
 @section('title', 'マイページ')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card mb-5">
-                <div class="card-header">
-                    <h3 class="text-center my-2"><i class="fas fa-user mr-2"></i>マイページ</h3>
-                </div>
-
-                <div class="card-body col-md-8 mx-auto">
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <p class="col-md-4 text-md-right">名前</p>
-                            <p class="col-md-6">テスト</p>
-                        </div>
-                        <div class="row mb-2">
-                            <p class="col-md-4 text-md-right">期生</p>
-                            <p class="col-md-6">5期生</p>
-                        </div>
-                        <div class="row mb-2">
-                            <p class="col-md-4 text-md-right">メールアドレス</p>
-                            <p class="col-md-6">
-                                test@test.com
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <a class='btn btn-secondary text-white col-md-3 py-2 mx-1 mb-4'>戻る</a>
-                            <a class="btn btn-success text-white col-md-3 py-2 mx-1 mb-4">編集</a>
-                        </div>
-                    </div>
-                </div>
+    <h2 class="text-center mb-5">マイページ</h2>
+    <div class="border bg-light shadow-sm p-5 mb-5">
+        <div class="row mb-3">
+            <div class="col-md-6 col-12 offset-md-0 text-center">
+                <img src="{{ asset('images/free_icon.png') }}" class="" alt="..."
+                    style="width: 150px; height: 150px;">
+            </div>
+            <div class="col-md-6 col-12 offset-md-0">
+                <span class="badge bg-warning px-2 py-1 mb-1">名前</span>
+                <p class="fs-3">{{ $userInfo->name }}</p>
+                <span class="badge bg-warning px-2 py-1 mb-1">性別</span>
+                <p>{{ $userInfo->sex }}</p>
+                <span class="badge bg-warning px-2 py-1 mb-1">年代</span>
+                <p>{{ $userInfo->age }}</p>
+                <span class="badge bg-warning px-2 py-1 mb-1">メールアドレス</span>
+                <p>{{ $userInfo->email }}</p>
+                <span class="badge bg-warning px-2 py-1 mb-1">ランク</span>
+                <p>{{ $userInfo->rank_id }}</p>
             </div>
         </div>
+        <div class="row justify-content-md-around">
+            <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-secondary  mb-4 mb-md-0"
+                type="submit">戻る</button>
+            <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-primary mt-0" type="submit">編集する</button>
+        </div>
     </div>
-</div>
+    <!-- <div class="row justify-content-md-around">
+                                                                                                    <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-secondary  mb-4 mb-md-0"
+                                                                                                    type="submit">戻る</button>
+                                                                                                    <button class="col-md-5 col-10 offset-md-0 offset-1 btn-block btn btn-primary mt-0" type="submit">編集する</button>
+                                                                                                </div> -->
+
+
+
 @endsection
