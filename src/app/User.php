@@ -46,4 +46,20 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Rank');
     }
+
+    public function getSex($sex)
+    {
+        if ($sex === 0) {
+            return '女性';
+        } elseif ($sex === 1) {
+            return '男性';
+        } elseif ($sex === null) {
+            return '';
+        }
+    }
+
+    public function getUser($id)
+    {
+        return $userInfo = User::where('id', $id)->first();
+    }
 }

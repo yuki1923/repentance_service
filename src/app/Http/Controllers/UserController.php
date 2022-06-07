@@ -9,6 +9,11 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class UserController extends Controller
 {
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,13 +51,14 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user, Request $request)
+    public function show(Request $request)
     {
-        $userInfo = $user->where('id', $request->id)->first();
+        $userInfo = $this->user->getUser($request->id);
+        $sex = $this->user->getSex($userInfo->sex);
         if (auth()->id() !== (int)$request->id) {
             abort(403);
         }
-        return view('user.mypage', compact('userInfo'));
+        return view('user.mypage', compact('userInfo', 'sex'));
     }
 
     /**
