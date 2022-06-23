@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\UserController;
+
 Auth::routes();
 Route::get('home', 'PostController@index')->name('index');
 Route::get('create', 'PostController@create')->name('create');
@@ -20,3 +22,5 @@ Route::get('edit/{id}', 'PostController@edit')->name('edit');
 Route::post('update/{id}', 'PostController@update')->name('update');
 Route::post('delete/{id}', 'PostController@delete')->name('delete');
 Route::get('user/{id}', 'UserController@show')->name('user.show');
+Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
+Route::post('user/update/{id}', 'UserController@update')->name('user.update');

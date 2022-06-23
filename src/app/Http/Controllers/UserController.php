@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Integer;
@@ -67,9 +68,11 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Request $request)
     {
-        //
+        $userInfo = $this->user->getUser($request->id);
+        $sex = $this->user->getSex($userInfo->sex);
+        return view('user.mypage_edit', compact(['userInfo', 'sex']));
     }
 
     /**
@@ -79,9 +82,19 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if ($user->id !== Auth::id()) {
+            return abort(403);
+        }
+        $user->name = $request->name;
+        $user->sex = (int)$request->sex;
+        $user->age = $request->age;
+        $user->email = $request->email;
+        $user->save();
+        session()->flash('flash_message', 'プロフィールが更新されました');
+        return redirect()->route('index');
     }
 
     /**
