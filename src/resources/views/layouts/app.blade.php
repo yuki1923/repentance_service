@@ -35,7 +35,8 @@
                             マイページ
                         </a>
                         <div class="dropdown-menu bg-dark border-0 text-light" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item text-light" href="#">マイページ編集</a>
+                            <a class="dropdown-item text-light"
+                                href="{{ route('user.show', ['id' => auth()->id()]) }}">マイページ編集</a>
                             <a class="dropdown-item text-light" href="#">パスワード変更</a>
                             <a class="dropdown-item text-light" href="#">過去投稿</a>
                             <a class="dropdown-item text-light" href="#">過去返答</a>
