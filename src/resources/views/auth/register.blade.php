@@ -29,6 +29,7 @@
                 <label for="showPassToggle">パスワードを表示する</label>
             </div>
             <button class="btn btn-primary btn-block mb-4" type="submit">登録</button>
+            <a class="btn btn-danger btn-block mb-4" href="{{ route('guest.login') }}">簡単ログイン</a>
             <div>
                 <a href="{{ route('login') }}" class="border-bottom border-primary">登録済みの方はこちら</a>
             </div>
