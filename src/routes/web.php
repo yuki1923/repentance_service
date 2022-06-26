@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\UserController;
 
+
 Auth::routes();
 Route::get('home', 'PostController@index')->name('index');
 Route::get('create', 'PostController@create')->name('create');
@@ -24,3 +25,4 @@ Route::post('delete/{id}', 'PostController@delete')->name('delete');
 Route::get('user/{id}', 'UserController@show')->name('user.show');
 Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
 Route::post('user/update/{id}', 'UserController@update')->name('user.update');
+Route::get('guest', '\App\Http\Controllers\Auth\LoginController@guestLogin')->name('guest.login');
