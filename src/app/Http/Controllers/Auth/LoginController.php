@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -43,5 +44,16 @@ class LoginController extends Controller
     {
         session()->flash('flash_message', 'ログアウトしました');
         return redirect(route('login'));
+    }
+
+    private const GUEST_USER_ID = 1;
+
+    public function guestLogin()
+    {
+        if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+            session()->flash('flash_message', '簡単ログイン完了');
+            return redirect(route('index'));
+        }
+        return redirect(route('index'));
     }
 }

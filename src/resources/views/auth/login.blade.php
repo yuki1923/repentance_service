@@ -27,6 +27,7 @@
             </div>
 
             <button class="btn btn-primary btn-block mb-4" type="submit">ログイン</button>
+            <a class="btn btn-danger btn-block mb-4" href="{{ route('guest.login') }}">簡単ログイン</a>
             <div class="mb-4">
                 <a href="{{ route('register') }}" class="border-bottom border-primary">はじめての方はこちら</a>
             </div>
