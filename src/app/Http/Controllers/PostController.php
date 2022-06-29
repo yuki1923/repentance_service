@@ -7,6 +7,7 @@ use App\User;
 use App\Comment;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
+use Throwable;
 
 class PostController extends Controller
 {
@@ -49,14 +50,18 @@ class PostController extends Controller
 
     public function update(PostRequest $request, $id)
     {
-        $post = Post::findOrFail($id);
-        if ($post->user_id !== Auth::id()) {
-            return abort(403);
+        try {
+            \DB::beginTransaction();
+            $post = Post::findOrFail($id);
+            $post->title = $request->title;
+            $post->text = $request->text;
+            $post->save();
+            \DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            abort(500);
         }
-        $post->title = $request->title;
-        $post->text = $request->text;
-        $post->save();
-        session()->flash('flash_message', '編集が完了しました');
+        session()->flash('flash_message', '更新しました');
         return redirect()->route('index');
     }
 
