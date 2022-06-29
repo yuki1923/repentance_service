@@ -6,7 +6,7 @@
     <h2 class="text-center mb-5 border-bottom">{{ $postData->title }}</h2>
     <div class="form-group  mb-5">
         <label class="form-label" for="repentance">懺悔内容</label>
-        @if ($contributor === true)
+        @if ($contributorFlg)
             <form action="{{ route('delete', ['id' => $postData->id]) }}" method="post">
                 @csrf
                 <button type="submit" class="float-right btn btn-secondary mb-2" href=""><i class="fa-solid fa-trash-can"></i>

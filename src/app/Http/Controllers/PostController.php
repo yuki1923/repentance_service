@@ -14,12 +14,12 @@ class PostController extends Controller
     {
         $perPage = 10;
         $allPosts = Post::latest()->paginate($perPage);
-        return view('posts/index', compact(['allPosts']));
+        return view('posts.index', compact(['allPosts']));
     }
 
     public function create()
     {
-        return view('posts/create');
+        return view('posts.create');
     }
 
     public function store(PostRequest $request)
@@ -37,13 +37,8 @@ class PostController extends Controller
     public function show($id)
     {
         $postData = Post::where('id', $id)->first();
-        //投稿者かどうか判定
-        if ($postData->user_id === Auth::id()) {
-            $contributor = true;
-        } else {
-            $contributor = false;
-        }
-        return view('posts.detail', compact('postData', 'contributor'));
+        $contributorFlg = $postData->isContributor($postData->user_id);
+        return view('posts.detail', compact('postData', 'contributorFlg'));
     }
 
     public function edit($id)
