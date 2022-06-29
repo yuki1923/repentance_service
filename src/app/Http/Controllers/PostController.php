@@ -25,12 +25,18 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $user_id = auth()->id();
-        Post::create([
-            'user_id' => $user_id,
-            'title' => $request->title,
-            'text' => $request->text,
-        ]);
+        try {
+            \DB::beginTransaction();
+            $user_id = auth()->id();
+            Post::create([
+                'user_id' => $user_id,
+                'title' => $request->title,
+                'text' => $request->text,
+            ]);
+            \DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+        }
         session()->flash('flash_message', '投稿が完了しました');
         return redirect()->route('index');
     }
