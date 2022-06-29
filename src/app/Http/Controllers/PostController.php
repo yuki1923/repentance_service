@@ -43,7 +43,6 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $editData = Post::where('id', $id)->first();
         $editData = Post::findOrFail($id);
         return view('posts.edit', compact('editData'));
     }
