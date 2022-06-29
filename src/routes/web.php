@@ -25,4 +25,6 @@ Route::post('delete/{id}', 'PostController@delete')->name('delete');
 Route::get('user/{id}', 'UserController@show')->name('user.show');
 Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
 Route::post('user/update/{id}', 'UserController@update')->name('user.update');
+Route::get('deleteConfirm', 'UserController@deleteConfirm')->name('user.delete_confirm');
+Route::post('destroy/{id}', 'UserController@destroy')->name('user.destroy');
 Route::get('guest', '\App\Http\Controllers\Auth\LoginController@guestLogin')->name('guest.login');

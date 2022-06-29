@@ -78,7 +78,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UserRequest  $request
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
@@ -98,13 +98,21 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * Remove the specified resource from storage
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        if ($user->id !== Auth::id()) {
+            return redirect()->route('index');
+        }
+        $user->delete();
+        session()->flash('flash_message', '退会が完了しました');
+        return redirect()->route('register');
+    }
+
+    public function deleteConfirm()
+    {
+        return view('user.delete_confirm');
     }
 }
