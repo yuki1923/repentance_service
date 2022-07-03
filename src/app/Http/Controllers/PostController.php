@@ -73,11 +73,15 @@ class PostController extends Controller
 
     public function delete($id)
     {
-        $post = Post::findOrFail($id);
-        if ($post->user_id !== Auth::id()) {
+        if (empty($id)) {
+            session()->flash('flash_message', 'データが存在しません');
             return redirect()->route('index');
         }
-        Post::findOrFail($id)->delete();
+        try {
+            Post::findOrFail($id)->delete();
+        } catch (\Throwable $e) {
+            abort(500);
+        }
         session()->flash('flash_message', '削除が完了しました');
         return redirect()->route('index');
     }

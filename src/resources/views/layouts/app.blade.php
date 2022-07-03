@@ -95,6 +95,7 @@
     <script src="{{ asset('/js/footer.js') }}"></script>
     <script src="{{ asset('/js/showPass.js') }}"></script>
     <script src="{{ asset('/js/tableLink.js') }}"></script>
+    <script src="{{ asset('/js/deleteConfirm.js') }}"></script>
 </body>
 
 </html>
