@@ -16,15 +16,24 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 Route::get('home', 'PostController@index')->name('index');
-Route::get('create', 'PostController@create')->name('create');
-Route::post('store', 'PostController@store')->name('store');
-Route::get('show/{id}', 'PostController@show')->name('show');
-Route::get('edit/{id}', 'PostController@edit')->name('edit');
-Route::post('update/{id}', 'PostController@update')->name('update');
-Route::post('delete/{id}', 'PostController@delete')->name('delete');
-Route::get('user/{id}', 'UserController@show')->name('user.show');
-Route::get('user/edit/{id}', 'UserController@edit')->name('user.edit');
-Route::post('user/update/{id}', 'UserController@update')->name('user.update');
-Route::get('deleteConfirm', 'UserController@deleteConfirm')->name('user.delete_confirm');
-Route::post('destroy/{id}', 'UserController@destroy')->name('user.destroy');
+Route::middleware('auth')->group(function () {
+  //投稿系画面
+  Route::prefix('post')->group(function () {
+    Route::get('create', 'PostController@create')->name('post.create');
+    Route::post('store', 'PostController@store')->name('post.store');
+    Route::get('show/{id}', 'PostController@show')->name('post.show');
+    Route::get('edit/{id}', 'PostController@edit')->name('post.edit');
+    Route::post('update/{id}', 'PostController@update')->name('post.update');
+    Route::post('delete/{id}', 'PostController@delete')->name('post.delete');
+  });
+  //ユーザー系画面
+  Route::prefix('user')->group(function () {
+    Route::get('show/{id}', 'UserController@show')->name('user.show');
+    Route::get('edit/{id}', 'UserController@edit')->name('user.edit');
+    Route::post('update/{id}', 'UserController@update')->name('user.update');
+    Route::get('deleteConfirm', 'UserController@deleteConfirm')->name('user.delete_confirm');
+    Route::post('destroy/{id}', 'UserController@destroy')->name('user.destroy');
+  });
+});
+//ゲストログインルーティング
 Route::get('guest', '\App\Http\Controllers\Auth\LoginController@guestLogin')->name('guest.login');

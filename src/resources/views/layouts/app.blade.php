@@ -64,7 +64,7 @@
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('create') }}">投稿する</a>
+                        <a class="nav-link" href="{{ route('post.create') }}">投稿する</a>
                     </li>
                 @endauth
             </ul>
