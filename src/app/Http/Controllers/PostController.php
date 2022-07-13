@@ -7,6 +7,7 @@ use App\User;
 use App\Comment;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
+use Throwable;
 
 class PostController extends Controller
 {
@@ -14,22 +15,28 @@ class PostController extends Controller
     {
         $perPage = 10;
         $allPosts = Post::latest()->paginate($perPage);
-        return view('posts/index', compact(['allPosts']));
+        return view('posts.index', compact(['allPosts']));
     }
 
     public function create()
     {
-        return view('posts/create');
+        return view('posts.create');
     }
 
     public function store(PostRequest $request)
     {
-        $user = auth()->id();
-        Post::create([
-            'user_id' => $user,
-            'title' => $request->title,
-            'text' => $request->text,
-        ]);
+        try {
+            \DB::beginTransaction();
+            $user_id = auth()->id();
+            Post::create([
+                'user_id' => $user_id,
+                'title' => $request->title,
+                'text' => $request->text,
+            ]);
+            \DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+        }
         session()->flash('flash_message', '投稿が完了しました');
         return redirect()->route('index');
     }
@@ -37,42 +44,44 @@ class PostController extends Controller
     public function show($id)
     {
         $postData = Post::where('id', $id)->first();
-        //投稿者かどうか判定
-        if ($postData->user_id === Auth::id()) {
-            $contributor = true;
-        } else {
-            $contributor = false;
-        }
-        return view('posts.detail', compact('postData', 'contributor'));
+        $contributorFlg = $postData->isContributor($postData->user_id);
+        return view('posts.detail', compact('postData', 'contributorFlg'));
     }
 
     public function edit($id)
     {
-        $editData = Post::where('id', $id)->first();
         $editData = Post::findOrFail($id);
         return view('posts.edit', compact('editData'));
     }
 
     public function update(PostRequest $request, $id)
     {
-        $post = Post::findOrFail($id);
-        if ($post->user_id !== Auth::id()) {
-            return abort(403);
+        try {
+            \DB::beginTransaction();
+            $post = Post::findOrFail($id);
+            $post->title = $request->title;
+            $post->text = $request->text;
+            $post->save();
+            \DB::commit();
+        } catch (\Throwable $e) {
+            \DB::rollback();
+            abort(500);
         }
-        $post->title = $request->title;
-        $post->text = $request->text;
-        $post->save();
-        session()->flash('flash_message', '編集が完了しました');
+        session()->flash('flash_message', '更新しました');
         return redirect()->route('index');
     }
 
     public function delete($id)
     {
-        $post = Post::findOrFail($id);
-        if ($post->user_id !== Auth::id()) {
+        if (empty($id)) {
+            session()->flash('flash_message', 'データが存在しません');
             return redirect()->route('index');
         }
-        Post::findOrFail($id)->delete();
+        try {
+            Post::findOrFail($id)->delete();
+        } catch (\Throwable $e) {
+            abort(500);
+        }
         session()->flash('flash_message', '削除が完了しました');
         return redirect()->route('index');
     }
