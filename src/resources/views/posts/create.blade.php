@@ -4,7 +4,7 @@
 
 @section('content')
     <h2 class="text-center mb-4">懺悔投稿部屋</h2>
-    <form class="form p-5" action="{{ route('store') }}" method="post">
+    <form class="form p-5" action="{{ route('post.store') }}" method="post">
         @csrf
         <div class="form-group mb-4">
             <label class="form-label" for="title">タイトル ※30文字以内</label>

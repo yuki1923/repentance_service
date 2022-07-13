@@ -64,7 +64,7 @@
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">ログアウト</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('create') }}">投稿する</a>
+                        <a class="nav-link" href="{{ route('post.create') }}">投稿する</a>
                     </li>
                 @endauth
             </ul>
@@ -95,6 +95,7 @@
     <script src="{{ asset('/js/footer.js') }}"></script>
     <script src="{{ asset('/js/showPass.js') }}"></script>
     <script src="{{ asset('/js/tableLink.js') }}"></script>
+    <script src="{{ asset('/js/deleteConfirm.js') }}"></script>
 </body>
 
 </html>

@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 @foreach ($allPosts as $post)
-                    <tr data-href="{{ route('show', ['id' => $post->id]) }}" style="cursor: pointer;">
+                    <tr data-href="{{ route('post.show', ['id' => $post->id]) }}" style="cursor: pointer;">
                         <td scope="row" style="border-bottom: 1px #989898 solid;">
                             {{ $post->created_at->format('Y-n-j G:i') }}
                         </td>
