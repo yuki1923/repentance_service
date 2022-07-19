@@ -85,4 +85,14 @@ class PostController extends Controller
         session()->flash('flash_message', '削除が完了しました');
         return redirect()->route('index');
     }
+
+    public function getAllMyPosts($id)
+    {
+        try {
+            $myPosts = Post::where('user_id', '=', $id)->latest()->paginate(10);
+            return view('user.post_history', compact('myPosts'));
+        } catch (\Throwable $e) {
+            abort(500);
+        }
+    }
 }
