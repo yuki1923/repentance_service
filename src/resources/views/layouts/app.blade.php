@@ -38,7 +38,8 @@
                             <a class="dropdown-item text-light"
                                 href="{{ route('user.show', ['id' => auth()->id()]) }}">マイページ編集</a>
                             <a class="dropdown-item text-light" href="#">パスワード変更</a>
-                            <a class="dropdown-item text-light" href="#">過去投稿</a>
+                            <a class="dropdown-item text-light"
+                                href="{{ route('user.post_history', ['id' => auth()->id()]) }}">過去投稿</a>
                             <a class="dropdown-item text-light" href="#">過去返答</a>
                             <a class="dropdown-item text-light" href="{{ route('user.delete_confirm') }}">退会</a>
                         </div>
