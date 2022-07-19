@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
 
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('update/{id}', 'UserController@update')->name('user.update');
     Route::get('deleteConfirm', 'UserController@deleteConfirm')->name('user.delete_confirm');
     Route::post('destroy/{id}', 'UserController@destroy')->name('user.destroy');
+    Route::get('post_history/{id}', 'PostController@getAllMyPosts')->name('user.post_history');
   });
 });
 //ゲストログインルーティング
