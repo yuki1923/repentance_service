@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('edit/{id}', 'PostController@edit')->name('post.edit');
     Route::post('update/{id}', 'PostController@update')->name('post.update');
     Route::post('delete/{id}', 'PostController@delete')->name('post.delete');
+    Route::post('comment', 'CommentController@store')->name('comment.store');
   });
   //ユーザー系画面
   Route::prefix('user')->group(function () {

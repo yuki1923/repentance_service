@@ -39,7 +39,7 @@ class UserRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'name.max' => ':attributeは50文字以内で入力してください',

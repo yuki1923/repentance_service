@@ -19,13 +19,18 @@
         @endif
         <textarea class="form-control" cols="30" rows="10" readonly>{{ $postData->text }}</textarea>
     </div>
-    <form class="form" action="" method="post">
+    <form class="form" action="{{ route('comment.store') }}" method="post">
+        @csrf
         <div class="form-group  mb-5">
-            <label class="form-label" for="repentance">返答内容</label>
-            <textarea class="form-control" name="reply" id="repentance" cols="30" rows="10"></textarea>
+            <label class="form-label" for="comment">コメント</label>
+            @error('comment')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
+            <textarea class="form-control" name="comment" id="comment" cols="30" rows="10"></textarea>
+            <input type="hidden" name="post_id" value="{{ $postData->id }}">
         </div>
         <div class="d-md-flex">
-            <button class=" btn-block btn btn-primary" type="submit">返答する</button>
+            <button class=" btn-block btn btn-primary" type="submit">コメントする</button>
             <a class="btn-block btn btn-secondary mt-sm-0 ml-sm-2" href="{{ route('index') }}">戻る</a>
         </div>
     </form>

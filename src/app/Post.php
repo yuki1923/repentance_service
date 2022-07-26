@@ -20,7 +20,8 @@ class Post extends Model
 
     public function comment()
     {
-        return $this->hasMany('App\Comment', 'post_id');
+        // return $this->hasMany('App\Comment', 'post_id');
+        return $this->hasOne('App\Comment');
     }
 
     public function isContributor($user_id)
