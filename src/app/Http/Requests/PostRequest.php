@@ -37,7 +37,7 @@ class PostRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {
         return [
             'title.required' => ':attributeを入力してください',
