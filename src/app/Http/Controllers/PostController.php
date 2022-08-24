@@ -45,7 +45,8 @@ class PostController extends Controller
     {
         $postData = Post::where('id', $id)->first();
         $contributorFlg = $postData->isContributor($postData->user_id);
-        return view('posts.detail', compact('postData', 'contributorFlg'));
+        $comment = Comment::where('post_id', $id)->first();
+        return view('posts.detail', compact('postData', 'contributorFlg', 'comment'));
     }
 
     public function edit($id)
