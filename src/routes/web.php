@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('update/{id}', 'PostController@update')->name('post.update');
     Route::post('delete/{id}', 'PostController@delete')->name('post.delete');
     Route::post('comment', 'CommentController@store')->name('comment.store');
+    Route::post('like', 'PostController@like')->name('post.like');
   });
   //ユーザー系画面
   Route::prefix('user')->group(function () {
