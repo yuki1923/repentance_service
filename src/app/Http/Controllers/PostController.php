@@ -6,6 +6,8 @@ use App\Post;
 use App\User;
 use App\Comment;
 use App\Http\Requests\PostRequest;
+use App\Like;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Throwable;
 
@@ -46,7 +48,8 @@ class PostController extends Controller
         $postData = Post::where('id', $id)->first();
         $contributorFlg = $postData->isContributor($postData->user_id);
         $comment = Comment::where('post_id', $id)->first();
-        return view('posts.detail', compact('postData', 'contributorFlg', 'comment'));
+        $post_likes_count = Post::withCount('likes')->findOrFail($id)->likes_count;
+        return view('posts.detail', compact('postData', 'contributorFlg', 'comment', 'post_likes_count'));
     }
 
     public function edit($id)
@@ -95,5 +98,24 @@ class PostController extends Controller
         } catch (\Throwable $e) {
             abort(500);
         }
+    }
+
+    public function like(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $post_id = $request->post_id;
+        $already_liked = Like::where('user_Id', $user_id)->where('post_id', $post_id)->first();
+
+        if (!$already_liked) {
+            $like = new Like;
+            $like->post_id = $post_id;
+            $like->user_id = $user_id;
+            $like->save();
+        } else {
+            Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
+        }
+        $post_likes_count = Post::withCount('likes')->findOrFail($post_id)->likes_count;
+        $param = ['post_likes_count' => $post_likes_count,];
+        return response()->json($param);
     }
 }

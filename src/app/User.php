@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
     public function rank()
     {
         return $this->belongsTo('App\Rank');
