@@ -17,7 +17,14 @@
             <a href="{{ route('post.edit', ['id' => $postData->id]) }}" class="float-right btn btn-primary mr-2 mb-2"><i
                     class="fa-solid fa-pen-to-square"></i> 編集</a>
         @endif
-        <textarea class="form-control" cols="30" rows="10" readonly>{{ $postData->text }}</textarea>
+        <textarea class="form-control mb-2" cols="30" rows="10" readonly>{{ $postData->text }}</textarea>
+        @if (!$postData->isLikedBy(Auth::id()))
+            <i id="likeBtn" class="fa-solid fa-heart" data-post-id="{{ $postData->id }}"></i>
+            <span class="like-counter">{{ $post_likes_count }}</span>
+        @else
+            <i id="likeBtn" class="fa-solid fa-heart liked" data-post-id="{{ $postData->id }}"></i>
+            <span class="like-counter">{{ $post_likes_count }}</span>
+        @endif
     </div>
     @empty($comment)
         <form class="form" action="{{ route('comment.store') }}" method="post">
