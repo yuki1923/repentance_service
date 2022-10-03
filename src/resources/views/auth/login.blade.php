@@ -32,7 +32,7 @@
                 <a href="{{ route('register') }}" class="border-bottom border-primary">はじめての方はこちら</a>
             </div>
             <div>
-                <a href="" class="border-bottom border-primary">パスワードを忘れた方はこちら</a>
+                <a href="{{ route('password.request') }}" class="border-bottom border-primary">パスワードを忘れた方はこちら</a>
             </div>
         </form>
     </div>
