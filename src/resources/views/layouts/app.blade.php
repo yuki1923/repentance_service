@@ -39,7 +39,7 @@
                         <div class="dropdown-menu bg-dark border-0 text-light" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item text-light"
                                 href="{{ route('user.show', ['id' => auth()->id()]) }}">マイページ編集</a>
-                            <a class="dropdown-item text-light" href="#">パスワード変更</a>
+                            <a class="dropdown-item text-light" href="{{ route('password.request') }}">パスワード変更</a>
                             <a class="dropdown-item text-light"
                                 href="{{ route('user.post_history', ['id' => auth()->id()]) }}">過去投稿</a>
                             <a class="dropdown-item text-light" href="#">過去返答</a>
