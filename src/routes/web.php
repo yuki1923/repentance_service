@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 Route::get('home', 'PostController@index')->name('index');
+Route::get('/', 'PostController@home')->name('home');
 Route::middleware('auth')->group(function () {
   //投稿系画面
   Route::prefix('post')->group(function () {

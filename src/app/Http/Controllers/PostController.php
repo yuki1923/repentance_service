@@ -13,6 +13,11 @@ use Throwable;
 
 class PostController extends Controller
 {
+    public function home()
+    {
+        return view('posts.home');
+    }
+
     public function index()
     {
         $perPage = 10;
